@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SplashFragment">
+
+    <fragment
+        android:id="@+id/SplashFragment"
+        android:name="com.rakesh.photoeditor.Screens.SplashFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/ImageListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ImageListFragment"
+        android:name="com.rakesh.photoeditor.Screens.ImageListFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_imagelist">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/SplashFragment" />
+        <action
+            android:id="@+id/action_ImageListFragment_to_imageEditFragment"
+            app:destination="@id/imageEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageEditFragment"
+        android:name="com.rakesh.photoeditor.Screens.ImageEditFragment"
+        android:label="fragment_image_edit"
+        tools:layout="@layout/fragment_image_edit" >
+        <action
+            android:id="@+id/action_imageEditFragment_to_ImageListFragment"
+            app:destination="@id/ImageListFragment" />
+        <argument
+            android:name="imageSelected"
+            app:argType="android.graphics.Bitmap" />
+    </fragment>
+</navigation>

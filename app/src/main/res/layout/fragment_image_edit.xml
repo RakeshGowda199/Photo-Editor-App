@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".Screens.ImageEditFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        >
+
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imageFilterView_selected"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_350sdp"
+            android:layout_margin="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.243"
+            app:overlay="false" />
+
+        <ImageView
+            android:id="@+id/iv_crop_image"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_baseline_crop_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_rotate_clk"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageFilterView_selected"
+            app:layout_constraintVertical_bias="0.37" />
+
+        <ImageView
+        android:id="@+id/iv_rortate_anticlk"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_baseline_rotate_left_24"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_rotate_clk"
+        app:layout_constraintEnd_toStartOf="@+id/iv_effects"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iv_rotate_clk"
+        app:layout_constraintTop_toTopOf="@+id/iv_rotate_clk" />
+
+    <ImageView
+        android:id="@+id/iv_rotate_clk"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_baseline_rotate_right_24"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_crop_image"
+        app:layout_constraintEnd_toStartOf="@+id/iv_rortate_anticlk"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iv_crop_image"
+        app:layout_constraintTop_toTopOf="@+id/iv_crop_image" />
+
+    <ImageView
+        android:id="@+id/iv_effects"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_sharp_insert_emoticon_24"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_rortate_anticlk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iv_rortate_anticlk"
+        app:layout_constraintTop_toTopOf="@+id/iv_rortate_anticlk" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorAccent"
+            android:text="save"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_rotate_clk" />
+
+        <SeekBar
+            android:id="@+id/sb_cropimage_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_x_axis"
+            app:layout_constraintTop_toTopOf="@+id/tv_x_axis" />
+
+        <SeekBar
+            android:id="@+id/seekBar_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/sb_cropimage_horizontal"
+            app:layout_constraintStart_toEndOf="@+id/tv_y_axis"
+            app:layout_constraintTop_toTopOf="@+id/tv_y_axis" />
+
+        <TextView
+            android:id="@+id/tv_y_axis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Y-Axis"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sb_cropimage_horizontal" />
+
+        <TextView
+            android:id="@+id/tv_x_axis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:text="X-Axis"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageFilterView_selected" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
