@@ -1,4 +1,4 @@
-package com.rakesh.photoeditor.Screens
+package com.rakesh.photoeditor.screens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.rakesh.photoeditor.Adapters.ImageListAdpter
+import com.rakesh.photoeditor.adapters.ImageListAdpter
 import com.rakesh.photoeditor.MainActivity
 import com.rakesh.photoeditor.R
 import io.paperdb.Paper

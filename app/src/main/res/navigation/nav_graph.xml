@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/SplashFragment"
-        android:name="com.rakesh.photoeditor.Screens.SplashFragment"
+        android:name="com.rakesh.photoeditor.screens.SplashFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_splash">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/ImageListFragment"
-        android:name="com.rakesh.photoeditor.Screens.ImageListFragment"
+        android:name="com.rakesh.photoeditor.screens.ImageListFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_imagelist">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/imageEditFragment"
-        android:name="com.rakesh.photoeditor.Screens.ImageEditFragment"
+        android:name="com.rakesh.photoeditor.screens.ImageEditFragment"
         android:label="fragment_image_edit"
         tools:layout="@layout/fragment_image_edit" >
         <action

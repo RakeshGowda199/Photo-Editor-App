@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".Screens.ImageEditFragment">
+    android:fillViewport="true"
+    tools:context=".screens.ImageEditFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        >
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark">
 
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -34,6 +34,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/ic_baseline_crop_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_rotate_clk"
@@ -43,37 +44,40 @@
             app:layout_constraintVertical_bias="0.37" />
 
         <ImageView
-        android:id="@+id/iv_rortate_anticlk"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_baseline_rotate_left_24"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_rotate_clk"
-        app:layout_constraintEnd_toStartOf="@+id/iv_effects"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/iv_rotate_clk"
-        app:layout_constraintTop_toTopOf="@+id/iv_rotate_clk" />
+            android:id="@+id/iv_rortate_anticlk"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_rotate_left_24"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_rotate_clk"
+            app:layout_constraintEnd_toStartOf="@+id/iv_effects"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_rotate_clk"
+            app:layout_constraintTop_toTopOf="@+id/iv_rotate_clk" />
 
-    <ImageView
-        android:id="@+id/iv_rotate_clk"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_baseline_rotate_right_24"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_crop_image"
-        app:layout_constraintEnd_toStartOf="@+id/iv_rortate_anticlk"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/iv_crop_image"
-        app:layout_constraintTop_toTopOf="@+id/iv_crop_image" />
+        <ImageView
+            android:id="@+id/iv_rotate_clk"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_baseline_rotate_right_24"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_crop_image"
+            app:layout_constraintEnd_toStartOf="@+id/iv_rortate_anticlk"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_crop_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_crop_image" />
 
-    <ImageView
-        android:id="@+id/iv_effects"
-        android:layout_width="@dimen/_30sdp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_sharp_insert_emoticon_24"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_rortate_anticlk"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/iv_rortate_anticlk"
-        app:layout_constraintTop_toTopOf="@+id/iv_rortate_anticlk" />
+        <ImageView
+            android:id="@+id/iv_effects"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_sharp_insert_emoticon_24"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_rortate_anticlk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_rortate_anticlk"
+            app:layout_constraintTop_toTopOf="@+id/iv_rortate_anticlk" />
 
         <Button
             android:id="@+id/btn_save"
@@ -82,7 +86,7 @@
             android:layout_margin="16dp"
             android:layout_marginTop="16dp"
             android:background="@color/colorAccent"
-            android:text="save"
+            android:text="@string/save"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +97,9 @@
             android:id="@+id/sb_cropimage_horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_x_axis"
             app:layout_constraintTop_toTopOf="@+id/tv_x_axis" />
@@ -118,10 +122,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
-            android:text="Y-Axis"
-            android:visibility="gone"
+            android:text="@string/y_axis"
             android:textColor="@android:color/white"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sb_cropimage_horizontal" />
 
@@ -132,10 +136,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
-            android:text="X-Axis"
-            android:visibility="gone"
+            android:text="@string/x_axis"
             android:textColor="@android:color/white"
             android:textStyle="italic"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageFilterView_selected" />
 

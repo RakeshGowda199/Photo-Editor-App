@@ -1,4 +1,4 @@
-package com.rakesh.photoeditor.Screens
+package com.rakesh.photoeditor.screens
 
 import android.os.Bundle
 import android.os.Handler

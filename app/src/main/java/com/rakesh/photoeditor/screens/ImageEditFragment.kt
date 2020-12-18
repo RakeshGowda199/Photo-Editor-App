@@ -1,6 +1,5 @@
-package com.rakesh.photoeditor.Screens
+package com.rakesh.photoeditor.screens
 
-import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
 import android.os.Bundle
@@ -37,14 +36,14 @@ class ImageEditFragment : Fragment() {
 
     lateinit var mImageSelectedBitmap: Bitmap
 
-    var SeletedIndex = 0
+    private var selectedIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         mImageSelectedBitmap = requireArguments().get("imageSelected") as Bitmap
         Log.i("Image_Seletced", mImageSelectedBitmap.toString())
-        fab_add_pics.visibility=View.INVISIBLE
+        fab_add_pics.visibility = View.INVISIBLE
     }
 
     override fun onCreateView(
@@ -52,47 +51,48 @@ class ImageEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val root_View = inflater.inflate(R.layout.fragment_image_edit, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_image_edit, container, false)
 
-        //intalize the View's
-        initView(root_View)
+        //initialize the View's
+        initView(rootView)
 
-        return root_View
+        return rootView
     }
 
     private fun initView(view: View) {
 
-        //intialize the Required View
-        val imageFilterView_selected = view.findViewById<ImageFilterView>(R.id.imageFilterView_selected)
-        val iv_effects = view.findViewById<ImageView>(R.id.iv_effects)
-        val iv_rotate_clk = view.findViewById<ImageView>(R.id.iv_rotate_clk)
-        val iv_rortate_anticlk = view.findViewById<ImageView>(R.id.iv_rortate_anticlk)
-        val iv_crop_image = view.findViewById<ImageView>(R.id.iv_crop_image)
-        val sb_cropimage = view.findViewById<SeekBar>(R.id.sb_cropimage_horizontal)
-        val seekBar_vertical = view.findViewById<SeekBar>(R.id.seekBar_vertical)
-        val btn_save = view.findViewById<Button>(R.id.btn_save)
-        val tv_y_axis = view.findViewById<TextView>(R.id.tv_y_axis)
-        val tv_x_axis = view.findViewById<TextView>(R.id.tv_x_axis)
+        //initialize the Required View
+        val imageFilterViewSelected =
+            view.findViewById<ImageFilterView>(R.id.imageFilterView_selected)
+        val ivEffects = view.findViewById<ImageView>(R.id.iv_effects)
+        val ivRotateClk = view.findViewById<ImageView>(R.id.iv_rotate_clk)
+        val ivRotateAnticlk = view.findViewById<ImageView>(R.id.iv_rortate_anticlk)
+        val ivCropImage = view.findViewById<ImageView>(R.id.iv_crop_image)
+        val sbCropImage = view.findViewById<SeekBar>(R.id.sb_cropimage_horizontal)
+        val seekBarVertical = view.findViewById<SeekBar>(R.id.seekBar_vertical)
+        val btnSave = view.findViewById<Button>(R.id.btn_save)
+        val tvYAxis = view.findViewById<TextView>(R.id.tv_y_axis)
+        val tvXAxis = view.findViewById<TextView>(R.id.tv_x_axis)
 
-        sb_cropimage.max = mImageSelectedBitmap.height-20
-        seekBar_vertical.max =  mImageSelectedBitmap.width-20
+        sbCropImage.max = mImageSelectedBitmap.height - 20
+        seekBarVertical.max = mImageSelectedBitmap.width - 20
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            sb_cropimage.min = 0
-            seekBar_vertical.min = 0
+            sbCropImage.min = 0
+            seekBarVertical.min = 0
         }
         //Seek bar Crop Horizontal
-        sb_cropimage.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        sbCropImage.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 val croppedBmp: Bitmap =
                     Bitmap.createBitmap(
                         mImageSelectedBitmap,
                         0,
                         p1,
-                        mImageSelectedBitmap.getWidth(),
-                        mImageSelectedBitmap.getHeight() - p1
+                        mImageSelectedBitmap.width,
+                        mImageSelectedBitmap.height - p1
                     )
-                imageFilterView_selected.setImageBitmap(croppedBmp)
+                imageFilterViewSelected.setImageBitmap(croppedBmp)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -106,7 +106,7 @@ class ImageEditFragment : Fragment() {
         })
 
         //Seek bar Crop Vertical
-        seekBar_vertical.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        seekBarVertical.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
 
@@ -115,10 +115,10 @@ class ImageEditFragment : Fragment() {
                         mImageSelectedBitmap,
                         p1,
                         0,
-                        mImageSelectedBitmap.getWidth() - p1,
-                        mImageSelectedBitmap.getHeight()
+                        mImageSelectedBitmap.width - p1,
+                        mImageSelectedBitmap.height
                     )
-                imageFilterView_selected.setImageBitmap(croppedBmp)
+                imageFilterViewSelected.setImageBitmap(croppedBmp)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -132,92 +132,92 @@ class ImageEditFragment : Fragment() {
 
         Glide.with(mMainActivity)
             .load(mImageSelectedBitmap)
-            .into(imageFilterView_selected)
+            .into(imageFilterViewSelected)
 
 
         //rotate Anti-Clock Wise
         var isAlradyClicked = false
         var mRotateImage = 90.0F
-        iv_rotate_clk.setOnClickListener {
-            if (isAlradyClicked) {
+        ivRotateClk.setOnClickListener {
+            mRotateImage = if (isAlradyClicked) {
                 if (mRotateImage == 360F) {
-                    mRotateImage = 0F
+                    0F
                 } else {
-                    mRotateImage = mRotateImage + 90.0F
+                    mRotateImage + 90.0F
                 }
             } else {
-                mRotateImage = 90.0F
+                90.0F
             }
             isAlradyClicked = true
-            imageFilterView_selected.rotation = mRotateImage
+            imageFilterViewSelected.rotation = mRotateImage
         }
 
         //rotate Clock Wise
-        iv_rortate_anticlk.setOnClickListener {
-            if (isAlradyClicked) {
+        ivRotateAnticlk.setOnClickListener {
+            mRotateImage = if (isAlradyClicked) {
                 if (mRotateImage == 0F) {
-                    mRotateImage = 360F
+                    360F
                 } else {
-                    mRotateImage = mRotateImage - 90.0F
+                    mRotateImage - 90.0F
 
                 }
             } else {
-                mRotateImage = 90.0F
+                90.0F
 
             }
             isAlradyClicked = true
-            imageFilterView_selected.rotation = mRotateImage
+            imageFilterViewSelected.rotation = mRotateImage
         }
 
         //effects
-        iv_effects.setOnClickListener {
-            mEffectsToImage(imageFilterView_selected)
+        ivEffects.setOnClickListener {
+            mEffectsToImage(imageFilterViewSelected)
         }
 
         //Crop Image
-        var isCropalready=false
-        iv_crop_image.setOnClickListener {
+        var isCropalready = false
+        ivCropImage.setOnClickListener {
 
-            if (isCropalready){
-                isCropalready=false
-                sb_cropimage.visibility=View.INVISIBLE
-                seekBar_vertical.visibility=View.INVISIBLE
-                tv_y_axis.visibility=View.INVISIBLE
-                tv_x_axis.visibility=View.INVISIBLE
-            }else{
-                isCropalready=true
-                sb_cropimage.visibility=View.VISIBLE
-                seekBar_vertical.visibility=View.VISIBLE
-                tv_y_axis.visibility=View.VISIBLE
-                tv_x_axis.visibility=View.VISIBLE
+            if (isCropalready) {
+                isCropalready = false
+                sbCropImage.visibility = View.INVISIBLE
+                seekBarVertical.visibility = View.INVISIBLE
+                tvYAxis.visibility = View.INVISIBLE
+                tvXAxis.visibility = View.INVISIBLE
+            } else {
+                isCropalready = true
+                sbCropImage.visibility = View.VISIBLE
+                seekBarVertical.visibility = View.VISIBLE
+                tvYAxis.visibility = View.VISIBLE
+                tvXAxis.visibility = View.VISIBLE
             }
 
         }
 
 
-        btn_save.setOnClickListener {
-            val imageBitmap=imageFilterView_selected.drawable.toBitmap()
+        btnSave.setOnClickListener {
+            val imageBitmap = imageFilterViewSelected.drawable.toBitmap()
 
-            val str_path=saveImage(imageBitmap)
+            val strPath = saveImage(imageBitmap)
 
-            _HandleLocalStore(str_path.toString())
+            handleLocalStore(strPath.toString())
         }
     }
 
-    private fun _HandleLocalStore(imageToStore: String) {
-        var arrayofSavedImages=ArrayList<String>()
-        if (Paper.book().contains("SavedImages")){
-            arrayofSavedImages=Paper.book().read("SavedImages")
+    private fun handleLocalStore(imageToStore: String) {
+        var arrayofSavedImages = ArrayList<String>()
+        if (Paper.book().contains("SavedImages")) {
+            arrayofSavedImages = Paper.book().read("SavedImages")
             arrayofSavedImages.add(imageToStore)
             Paper.book().write("SavedImages", arrayofSavedImages)
-        }else{
+        } else {
             arrayofSavedImages.add(imageToStore)
             Paper.book().write("SavedImages", arrayofSavedImages)
         }
 
-        val printData=Paper.book().read("SavedImages") as ArrayList<String>
-        Log.d("SavedImagepath",imageToStore)
-        Log.d("SavedImage",printData.toString())
+        val printData = Paper.book().read("SavedImages") as ArrayList<String>
+        Log.d("SavedImagepath", imageToStore)
+        Log.d("SavedImage", printData.toString())
         mSuccessAlertMessage()
     }
 
@@ -225,10 +225,10 @@ class ImageEditFragment : Fragment() {
         MaterialAlertDialogBuilder(mMainActivity)
             .setTitle("Sucess!!!")
             .setMessage("Saved Sucessfully !!!")
-            .setPositiveButton("OK", DialogInterface.OnClickListener { dialogInterface, i ->
+            .setPositiveButton("OK") { dialogInterface, _ ->
                 dialogInterface.dismiss()
                 MainActivity.navController.navigate(R.id.ImageListFragment)
-            })
+            }
             .show()
     }
 
@@ -236,15 +236,15 @@ class ImageEditFragment : Fragment() {
 
 
         val effects = arrayOf("Normal", "contrast", "saturation", "warmth", "crossfade")
-        var SelectedEffect = effects[SeletedIndex]
+        var _SelectedEffect = effects[selectedIndex]
         MaterialAlertDialogBuilder(mMainActivity)
             .setTitle("Select The Effect")
-            .setSingleChoiceItems(effects, SeletedIndex) { dialog, which ->
-                SeletedIndex = which
-                SelectedEffect = effects[SeletedIndex]
+            .setSingleChoiceItems(effects, selectedIndex) { _, which ->
+                selectedIndex = which
+                _SelectedEffect = effects[selectedIndex]
             }
-            .setPositiveButton("Submit", DialogInterface.OnClickListener { dialogInterface, i ->
-                when (SeletedIndex) {
+            .setPositiveButton("Submit") { dialogInterface, _ ->
+                when (selectedIndex) {
                     0 -> {
                         imageFilterView.contrast = 1F
                         imageFilterView.saturation = 1F
@@ -280,12 +280,12 @@ class ImageEditFragment : Fragment() {
                     }
                 }
                 dialogInterface.dismiss()
-            })
+            }
             .show()
     }
 
 
-    fun saveImage(myBitmap: Bitmap): String? {
+    private fun saveImage(myBitmap: Bitmap): String? {
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val imageDirectory = Environment.getExternalStoragePublicDirectory(IMAGE_DIRECTORY)
@@ -302,16 +302,19 @@ class ImageEditFragment : Fragment() {
             f.createNewFile()
             val fo = FileOutputStream(f)
             fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(mMainActivity, arrayOf(f.getPath()), arrayOf("image/jpeg"), null)
+            MediaScannerConnection.scanFile(
+                mMainActivity,
+                arrayOf(f.path),
+                arrayOf("image/jpeg"),
+                null
+            )
             fo.close()
-            return f.getAbsolutePath()
+            return f.absolutePath
         } catch (e1: IOException) {
             e1.printStackTrace()
         }
         return ""
     }
-
-
 
 
 }

@@ -1,4 +1,4 @@
-package com.rakesh.photoeditor.Adapters
+package com.rakesh.photoeditor.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.rakesh.photoeditor.MainActivity.Companion.IMAGE_DIRECTORY
 import com.rakesh.photoeditor.R
 
 

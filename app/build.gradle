@@ -12,7 +12,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -55,7 +55,6 @@ dependencies {
 
     //for small amount of data store locally
     implementation 'io.paperdb:paperdb:2.7.1'
-
 
 
 }
