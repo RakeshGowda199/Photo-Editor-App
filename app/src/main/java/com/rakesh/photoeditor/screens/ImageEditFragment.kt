@@ -62,8 +62,7 @@ class ImageEditFragment : Fragment() {
     private fun initView(view: View) {
 
         //initialize the Required View
-        val imageFilterViewSelected =
-            view.findViewById<ImageFilterView>(R.id.imageFilterView_selected)
+        val imageFilterViewSelected = view.findViewById<ImageFilterView>(R.id.imageFilterView_selected)
         val ivEffects = view.findViewById<ImageView>(R.id.iv_effects)
         val ivRotateClk = view.findViewById<ImageView>(R.id.iv_rotate_clk)
         val ivRotateAnticlk = view.findViewById<ImageView>(R.id.iv_rortate_anticlk)
